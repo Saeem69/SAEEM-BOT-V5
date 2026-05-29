@@ -1,15 +1,16 @@
 {
   "name": "v5",
-  "version": "5.0.0",
-  "description": "a simple bot create by BADOL",
+  "version": "5.1.0",
+  "description": "BADOL-BOT V5 - Updated for Node 24",
   "main": "index.js",
   "engines": {
-    "node": "20.x",
+    "node": ">=18.0.0",
     "npm": ">=10.0.0"
   },
   "scripts": {
     "start": "node index.js",
     "login": "node login",
+    "dev": "nodemon index.js",
     "test": "node --trace-warnings --use_strict --async-stack-traces badol",
     "pm2": "pm2 start index.js --name BADOL-BOT",
     "pm2-stop": "pm2 stop BADOL-BOT",
@@ -17,7 +18,8 @@
     "pm2-logs": "pm2 logs BADOL-BOT",
     "pm2-delete": "pm2 delete BADOL-BOT",
     "clean": "rm -rf node_modules package-lock.json && npm install",
-    "update": "npm update --save"
+    "update": "npm update --save",
+    "rebuild": "npm rebuild"
   },
   "author": "BADOL",
   "license": "GPL-3.0",
@@ -29,7 +31,7 @@
     "axios": "^1.16.0",
     "body-parser": "^2.2.2",
     "caesar-salad": "^2.1.0",
-    "canvas": "^2.11.2",
+    "canvas": "^3.2.0",
     "chalk": "^4.1.2",
     "chalkercli": "^1.6.4",
     "cheerio": "^1.2.0",
@@ -73,6 +75,7 @@
     "pastebin-api": "^7.0.0",
     "pidusage": "^4.0.1",
     "ping-monitor": "^0.8.2",
+    "pm2": "^6.0.8",
     "random-cat-img": "^1.1.8",
     "request": "^2.88.2",
     "sagor-fca": "^0.0.20",
@@ -99,5 +102,8 @@
     "yt-search": "^2.13.1",
     "ytdl-core": "^4.11.5",
     "zalgo": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
