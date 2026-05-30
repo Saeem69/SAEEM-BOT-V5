@@ -1,4 +1,4 @@
-name: Node.js CI
+name: BADOL-BOT-V5 ULTIMATE CI
 
 on:
   push:
@@ -10,19 +10,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # GitHub রানারকে Node 24 এনভায়রনমেন্ট ব্যবহার করতে ফোর্স করা হচ্ছে
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-    - name: Use Node.js
+    - name: Install System Dependencies (For Canvas & SQLite3)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+
+    - name: Use Node.js 24
       uses: actions/setup-node@v4
       with:
         node-version: 24.x
+        cache: 'npm' # এতে প্যাকেজগুলো ক্যাশ হয়ে থাকবে, প্রতিবার সময় নষ্ট হবে না
 
-    - name: Force Success
+    - name: Install Dependencies
       run: |
-        echo "Workflow bypassed successfully with Node 24 environment."
-        exit 0
+        npm ci # package-lock.json অনুযায়ী ক্লিন এবং ফাস্ট ইনস্টল করার জন্য npm ci ব্যবহার করা হয়েছে
+
+    - name: Create AppState File from Secret
+      run: |
+        echo '${{ secrets.BADOL_APPSTATE }}' > BADOL-Appstate.json
+
+    - name: Start BADOL-BOT V5
+      run: npm start # আপনার package.json এর "start": "node index.js" স্ক্রিপ্টটি রান হবে
