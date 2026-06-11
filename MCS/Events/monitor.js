@@ -39,7 +39,7 @@ module.exports.onEvent = async (api, event) => {
         if (settings.anti === false) return; // সেটিংস অফ থাকলে কাজ করবে না
 
         const actor = (await api.getUserInfo(event.author))[event.author]?.name || "কেউ";
-        const oldName = threadData.name || "BADOL GROUP";
+        const oldName = threadData.name || "SAEEM GROUP";
         api.setTitle(oldName, event.threadID);
         api.sendMessage(`⚠️ ${actor} গ্রুপের নাম পরিবর্তন করে "${event.logMessageData.name}" করেছিলেন, আমি তা আবার "${oldName}" করে দিয়েছি!`, event.threadID);
     }
