@@ -16,10 +16,10 @@ module.exports = {
  onStart: async (api, event, args) => {
  const config = JSON.parse(fs.readFileSync(path.join(__dirname, "../../config.json"), "utf-8"));
  const prefix = config.BOT_INFO.PREFIX;
- const botName = config.BOT_INFO.BOT_NAME || "BADOL-BOT-V5";
+ const botName = config.BOT_INFO.BOT_NAME || "TONNI-AKTER";
  const commands = global.commands;
- const ownerName = "MOHAMMAD BADOL";
- const imgURL = "https://drive.google.com/uc?export=download&id=1detiUoL9Xqlaf9pdAclNWG32t2W78oDX";
+ const ownerName = "SAEEM SHEIKH";
+ const imgURL = "https://drive.google.com/uc?export=download&id=1QbYtELhnXdMrST3F4e3ULU3vMNvr8pGP";
 
  const getStream = async (url) => {
  const res = await axios.get(url, { responseType: "stream" });
@@ -43,8 +43,8 @@ module.exports = {
  msg += `┊││▸ ✿ Total Commands: ${totalCommands}\n`;
  msg += `┊││▸ ✿ Dev: ${ownerName}\n`;
  msg += `┊│╰──────────────────◈\n`;
- msg += `╰────────────────────⟡\n\n`;
- msg += `✨ Use: ${prefix}help [command name] ✨`;
+ msg += `╰───────────────────⟡\n\n`;
+ msg += `✿Use: ${prefix}help [command name]✿`;
 
  return api.sendMessage({
  body: msg.trim(),
