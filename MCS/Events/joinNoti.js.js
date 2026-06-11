@@ -37,15 +37,15 @@ module.exports = {
         const config = getConfig();
 
         // ছবির লিংক - Drive ডাউনলোড লিংক
-        const imgURL = "https://drive.google.com/uc?export=download&id=107tUEMU7YZWkKJfUzD7-tiPGVdOSY7wb";
+        const imgURL = "https://drive.google.com/uc?export=download&id=1QbYtELhnXdMrST3F4e3ULU3vMNvr8pGP";
 
         // গ্রুপের তথ্য
         const threadInfo = await api.getThreadInfo(threadID);
         const groupName = threadInfo.threadName || "এই গ্রুপ";
         const memberCount = threadInfo.participantIDs.length;
-        const prefix = config.BOT_INFO?.PREFIX || "/";
-        const botName = config.BOT_INFO?.NAME || "BADOL-BOT";
-        const owner = config.OWNER_LOCK?.NAME || "MOHAMMAD BADOL";
+        const prefix = config.BOT_INFO?.PREFIX || "$";
+        const botName = config.BOT_INFO?.NAME || "TONNI-AKTER";
+        const owner = config.OWNER_LOCK?.NAME || "SAEEM SHEIKH";
 
         // অ্যাডমিন নাম
         let adderName = "Admin";
@@ -67,30 +67,30 @@ module.exports = {
 
                 // 2. বট এড হইছে - ছবি সহ ওয়েলকাম
                 const botWelcomeMsg =
-`╭────────────────────────╮
+`╭─────────────────────╮
 │ 🤖 𝗕𝗢𝗧 𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗘𝗗 🤖 │
-╰────────────────────────╯
+╰─────────────────────╯
 
 হ্যালো ${groupName}! 👋
 
 আমি ${botName}
 আমাকে এড করার জন্য ধন্যবাদ ${adderName}! ❤️
 
-━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━
 📌 𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢:
 👥 মেম্বার: ${memberCount} জন
 🤖 বট প্রিফিক্স: ${prefix}
-━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━
 
 💡 𝗚𝗘𝗧 𝗦𝗧𝗔𝗥𝗧𝗘𝗗:
 সব কমান্ড দেখতে টাইপ করো:
 ${prefix}help
 
-━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━
 👑 𝗢𝗪𝗡𝗘𝗥: ${owner}
 
 সবাইকে স্বাগতম! 🌸
-╰────────────────────────╯`;
+╰─────────────────────╯`;
 
                 return api.sendMessage({
                     body: botWelcomeMsg,
