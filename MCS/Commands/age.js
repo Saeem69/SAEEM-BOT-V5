@@ -15,19 +15,19 @@ module.exports = {
         role: 0,
         cooldown: 5,
         prefix: true,
-        credit: "SAEEM SHEIKH"
+        credit: "MOHAMMAD BADOL"
     },
 
     onStart: async (api, event, args) => {
         const { threadID, messageID, senderID } = event;
-        const credit = "MOHAMMAD BADOL";
+        const credit = "SAEEM SHEIKH";
 
         let input = args.join(" ");
         if (!input) {
             return api.sendMessage(
                 `╭─⚠️ WARNING ─╮\n` +
                 `│ জন্মতারিখ দিন!\n` +
-                `│ 💡 উদাহরণ: /age 06-01-1998\n` +
+                `│ 💡 উদাহরণ: /age 11-01-2006\n` +
                 `╰─────────────╯`,
                 threadID, messageID
             );
