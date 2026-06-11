@@ -102,7 +102,7 @@ module.exports = {
 
         // 🔥 তোমার Google Drive ছবি
         const driveFileId = "1ITONZqIZdgshuwVC1Sgk1KservMD9lMT";
-        const driveDownloadUrl = `https://drive.google.com/uc?export=download&id=${driveFileId}`;
+        const driveDownloadUrl = `https://drive.google.com/file/d/1HV--VPcV90f99PIWylHqyNdsdJr_wDpc/view?usp=drivesdk=${driveFileId}`;
 
         try {
             // ছবি ডাউনলোড
@@ -126,7 +126,7 @@ Your group has been successfully approved.
 ━━━━━━━━━━━━━━━━━━━━━━
 ✨ All bot features are now unlocked!
 💬 Type ${config.BOT_INFO.PREFIX}help to see commands
-🔥 Enjoy using BADOL-BOT V5
+🔥 Enjoy using TONNI-AKTER
 ━━━━━━━━━━━━━━━━━━━━━━`;
 
             await api.sendMessage({
