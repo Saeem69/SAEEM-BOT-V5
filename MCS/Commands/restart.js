@@ -1,6 +1,6 @@
 module.exports = {
  config: {
- name: "resed",
+ name: "restart",
  aliases: ["re", "restart", "reboot"], // এখানে আপনার পছন্দমতো নামগুলো দিন
  credit: "MOHAMMAD BADOL",
  role: 1,
