@@ -39,30 +39,30 @@ module.exports.onEvent = async function (api, event) {
                     const userInfo = await api.getUserInfo(author);
                     const adderName = userInfo[author]?.name || "Unknown User";
 
-                    const msg = `╭━━━━━━━━━━━━━━━━━━━━╮
+                    const msg = `╭━━━━━━━━━━━━━━━━━━━╮
 ┃ ✅ 𝐁𝐎𝐓 𝐀𝐃𝐃𝐄𝐃 𝐍𝐎𝐓𝐈𝐂𝐄 ✅ ┃
-╰━━━━━━━━━━━━━━━━━━━━╯
+╰━━━━━━━━━━━━━━━━━━━╯
 
 📢 ${ownerName} ভাই, আমাকে নতুন গ্রুপে অ্যাড করা হইছে!
 
-╔════════════════════╗
+╔══════════════════╗
 ║ 📊 𝐆𝐑𝐎𝐔𝐏 𝐈𝐍𝐅𝐎
-╚════════════════════╝
+╚══════════════════╝
 🏷️ নাম: ${threadInfo.threadName || "Unnamed Group"}
 🆔 TID: ${threadID}
 👥 মেম্বার: ${threadInfo.participantIDs.length} জন
 👑 অ্যাডমিন: ${threadInfo.adminIDs.length} জন
 
-╔════════════════════╗
+╔══════════════════╗
 ║ 👤 𝐀𝐃𝐃𝐄𝐃 𝐁𝐘
-╚════════════════════╝
+╚══════════════════╝
 📛 নাম: ${adderName}
 🆔 UID: ${author}
 🔗 প্রোফাইল: fb.com/${author}
 
 ⏰ সময়: ${new Date().toLocaleString("bn-BD", { timeZone: "Asia/Dhaka" })}
 
-━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━
 ⚡ TONNI-AKTER এখন এই গ্রুপে এক্টিভ!`;
 
                     // নির্দিষ্ট নোটিফিকেশন গ্রুপে মেসেজ পাঠানো
