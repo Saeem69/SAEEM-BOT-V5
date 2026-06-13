@@ -26,19 +26,19 @@ module.exports = {
         }
 
         const currentPrefix = config.BOT_INFO?.PREFIX || "/";
-        const botName = config.BOT_INFO?.BOT_NAME || "BADOL-BOT-V5";
-        const ownerName = "MOHAMMAD BADOL";
-        const imgURL = "https://drive.google.com/uc?export=download&id=1_NMOEKFXUZsvh2b7EnDwJWYp-DvLoJFJ";
+        const botName = config.BOT_INFO?.BOT_NAME || "𝐓𝐨𝐧𝐧𝐢 𝐁𝐨𝐭";
+        const ownerName = "𝐒𝐚𝐞𝐞𝐦 𝐒𝐡𝐞𝐢𝐤𝐡";
+        const imgURL = "https://drive.google.com/file/d/1PNL47Xm-Zv1d7LBpSVBL-cAqCq_UGyXs/view?usp=drivesdk";
 
         if (args.length === 0 || (args[0].toLowerCase() !== "set" && args[0].toLowerCase() !== "change")) {
             const msg = `╭───❍ 𝐏𝐫e𝐟𝐢𝐱-𝐈𝐧𝐟𝐨 ❍───╮\n┏━━━━━━━━━━━━━━━━━━━❥\n` +
                         `├‣ ✿ 𝐁𝐨𝐭 𝐍𝐚𝐦𝐞: ${botName}\n` +
                         `├‣ ✿ 𝐏𝐫𝐞𝐟𝐢𝐱: [ ${currentPrefix} ]\n` +
-                        `├‣ ✿ 𝐓𝐲𝐩𝐞: ${currentPrefix}help\n` +
+                        `├‣ ✿ 𝐓𝐲𝐩𝐞: ${currentPrefix}𝐡𝐞𝐥𝐩\n` +
                         `├‣ ✿ 𝐃e𝐯: ${ownerName}\n` +
                         `┗━━━━━━━━━━━━━━━━━━━❥\n\n` +
                         `𝄞⋆⃝🧚‍${botName}🧚‍⋆⃝𝄞\n` +
-                        `╰────────────────────⟡\n` +
+                        `╰───────────────────⟡\n` +
                         `💡 Use: ${currentPrefix}prefix set <new_prefix>`;
 
             const imgPath = path.join(CACHE_DIR, `prefix_img_${Date.now()}.png`);
@@ -91,7 +91,7 @@ module.exports = {
                                    `├‣ 🚀 New Prefix: [ ${newPrefix} ]\n` +
                                    `┗━━━━━━━━━━━━━━━━━━━❥\n\n` +
                                    `𝄞⋆⃝🧚‍${botName}🧚‍⋆⃝𝄞\n` +
-                                   `╰────────────────────⟡`;
+                                   `╰───────────────────⟡`;
                 return api.sendMessage(successMsg, threadID, messageID);
             } catch (err) {
                 return api.sendMessage(`❌ Error: Failed to save prefix: ${err.message}`, threadID, messageID);
