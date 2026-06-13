@@ -28,7 +28,7 @@ module.exports = {
         const currentPrefix = config.BOT_INFO?.PREFIX || "/";
         const botName = config.BOT_INFO?.BOT_NAME || "TONNI-AKTER";
         const displayOwnerName = "SAEEM SHEIKH"; 
-        const imgURL = "https://drive.google.com/file/d/1PNL47Xm-Zv1d7LBpSVBL-cAqCq_UGyXs/view?usp=drivesdk";
+        const imgURL = "https://drive.google.com/uc?export=download&id=1PNL47Xm-Zv1d7LBpSVBL-cAqCq_UGyXs";
 
         if (args.length === 0 || (args[0].toLowerCase() !== "set" && args[0].toLowerCase() !== "change")) {
             const msg = `╭───❍ 𝐏𝐫e𝐟𝐢𝐱-𝐈𝐧𝐟𝐨 ❍───╮\n┏━━━━━━━━━━━━━━━━━━━❥\n` +
