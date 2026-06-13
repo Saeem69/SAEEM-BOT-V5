@@ -74,7 +74,7 @@ module.exports.onStart = async function (api, event, args) {
                 }
 
                 api.sendMessage({
-                    body: "🎙️ 𝗕𝗔𝗗𝗢𝗟-𝗕𝗢𝗧 𝗕𝗮𝗻𝗴𝗹𝗮 𝗧𝗧𝗦",
+                    body: "𝗦𝗔𝗘𝗘𝗠 𝗕𝗢𝗧🎙️",
                     attachment: fs.createReadStream(filePath)
                 }, threadID, () => {
                     try { if (fs.existsSync(filePath)) fs.unlinkSync(filePath); } catch (e) {}
