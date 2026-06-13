@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 
 // ════════════════ নোটিফিকেশন গ্রুপ আইডি ════════════════
-const NOTICE_GROUP_ID = "100022291393952"; 
+const NOTICE_GROUP_ID = "27612074005084063"; 
 
 module.exports.config = {
     name: "antibotkick",
