@@ -31,6 +31,9 @@ module.exports.onStart = async function (api, event, args) {
         `⏰ 𝐓𝐈𝐌𝐄: ${time}\n\n` +
         `© 𝐓𝐇𝐀𝐍𝐊 𝐘𝐎𝐔 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆 𝐓𝐎𝐍𝐍𝐈 𝐁𝐎𝐓🌺.`;
 
+    const imageUrl = "https://drive.google.com/uc?export=download&id=1Hvpc_64T7bEp2V_lyVdqylsUd2VBZHnC";
+‎        const cachePath = path.join(__dirname, "../../cache", "rules_image.jpg");
+
     try {
         return api.sendMessage(rulesMessage, threadID, messageID);
     } catch (error) {
