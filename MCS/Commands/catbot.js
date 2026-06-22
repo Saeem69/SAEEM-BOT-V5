@@ -1,143 +1,115 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const baseApiUrl = async () => {
-  try {
-    const base = await axios.get(
-      "https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/baseApiUrl.json"
-    );
-    return base.data.api;
-  } catch (e) {
-    return "https://api.dipto.fun";
-  }
+ try {
+ const base = await axios.get(`https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/baseApiUrl.json`);
+ return base.data.api;
+ } catch (e) {
+ return "https://api.dipto.fun";
+ }
 };
 
 module.exports = {
-  config: {
-    name: "catbot",
-    version: "7.0.1",
-    credit: "MOHAMMAD BADOL",
-    role: 0,
-    description: "Better than all sim simi with mention reply",
-    prefix: true,
-    aliases: ["baby", "sim"],
-    cooldown: 0
-  },
+ config: {
+ name: "catbot",
+ version: "6.9.9",
+ credit: "MOHAMMAD BADOL",
+ role: 0,
+ description: "Better than all sim simi",
+ prefix: true,
+ aliases: ["baby", "sim"],
+ cooldown: 0
+ },
 
-  onStart: async function ({ api, event, args }) {
-    const link = `${await baseApiUrl()}/baby`;
-    const text = args.join(" ").trim().toLowerCase();
+ onStart: async (api, event, args) => {
+ const { threadID, messageID, senderID } = event;
+ const link = `${await baseApiUrl()}/baby`;
+ const dipto = args.join(" ").toLowerCase();
+ if (!args[0]) return api.sendMessage("Bolo baby, type 'baby help' for info.", threadID);
+ 
+ let name = "User";
+ try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
 
-    if (!text) {
-      return api.sendMessage(
-        "Bolo baby, type 'baby help' for info.",
-        event.threadID,
-        event.messageID
-      );
-    }
+ try {
+ const res = await axios.get(`${link}?text=${encodeURIComponent(dipto)}&senderID=${senderID}&font=1`);
+ const finalMsg = `${name}, ${res.data.reply}`;
+ return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
+ if (!err) {
+ global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
+ }
+ }, messageID);
+ } catch (e) {
+ api.sendMessage("Error: " + e.message, threadID);
+ }
+ },
 
-    try {
-      const res = await axios.get(
-        `${link}?text=${encodeURIComponent(text)}&senderID=${event.senderID}&font=1`
-      );
-      return api.sendMessage(res.data.reply, event.threadID, event.messageID);
-    } catch (e) {
-      return api.sendMessage("Error: " + e.message, event.threadID, event.messageID);
-    }
-  },
+ onChat: async (api, event) => {
+ if (!event.body) return;
+ const body = event.body.toLowerCase();
+ const keywords = ["baby", "bby", "bot", "বট"];
+ if (keywords.some(k => body.startsWith(k))) {
+ const { threadID, messageID, senderID } = event;
+ const arr = body.replace(/^\S+\s*/, "");
+ const link = await baseApiUrl();
+ 
+ let name = "User";
+ try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
 
-  onChat: async function ({ api, event, usersData }) {
-    try {
-      if (!event.body) return;
+ if (!arr) {
+ const msgs = [
+ "বেশি Bot Bot করলে leave নিবো কিন্তু! 😒😒", "শুনবো না😼 তুমি আমার ছাইম ভাই কে প্রেম করাই দাও নাই🥺পচা তুমি🥺",
+ "Bolo Babu, তুমি কি আমার ছাইম ভাই কে ভালোবাসো? 🙈💋", "I love you janu! 🥰", "আরে বলদ, এতো ডাকিস কেন? 🤬",
+ "আসসালামু আলাইকুম, বলুন আপনার জন্য কি করতে পারি? 🥰", "আমাকে না ডেকে মেয়ে হলে বাদল ভাই এর ইনবক্সে চলে যা 🌚😂",
+ "আমাকে বট না বলে, বাদল ভাই কে জানু বল জানু 😘", "আমাকে ডেকো না,আমি ছাইম ভাই এর সাথে ব্যাস্ত আছি",
+ "আমার ছাইম ভাই এর পক্ষ থেকে তোমারে এতো এতো ভালোবাসা-🥰😽🫶", "বার বার Disturb করছিস কোনো😾,আমার জানুর সাথে ব্যাস্ত আছি😋",
+ "হ্যাঁ জানু, এইদিক এ আসো কিস দেই🤭 😘", "দূরে যা, তোর কোনো কাজ নাই, শুধু bot bot করিস 😉😋🤣",
+ "তোর কথা তোর বাড়ি কেউ শুনে না,তো আমি কোনো শুনবো?🤔😂", "জান মেয়ে হলে ছাইম ভাই এর ইনবক্সে চলে যাও 😍🫣💕",
+ "হা বলো, শুনছি আমি 😏", "আর কত বার ডাকবি,শুনছি তো", "বলো জানু 🌚", "তোর কি চোখে পড়ে না আমি ব্যাস্ত আছি😒",
+ "হুম জান তোমার ওই খানে উম্মহ😑😘", "আহ শুনা আমার তোমার অলিতে গলিতে উম্মাহ😇😘", "jang hanga korba😒😬",
+ "আমি এখন ছাইম ভাই এর সাথে বিজি আছি আমাকে ডাকবেন না-😕😏", "আমাকে না ডেকে আমার ছাইম ভাই কে একটা জি এফ দাও-😽🫶🌺",
+ "ঝাং থুমালে আইলাপিউ পেপি-💝😽", "উফফ বুঝলাম না এতো ডাকছেন কেনো-😤😡😈",
+ "জান তোমার বান্ধবী রে আমার ছাইম ভাই এর হাতে তুলে দিবা-🙊🙆‍♂", "আজকে আমার মন ভালো নেই তাই আমারে ডাকবেন না-😪🤧",
+ "ঝাং 🫵থুমালে য়ামি রাইতে পালুপাসি উম্মম্মাহ-🌺🤤💦", "চুনা ও চুনা আমার ছাইম ভাই এর হবু বউ রে কেও দেখছো খুজে পাচ্ছি না😪🤧😭",
+ "স্বপ্ন তোমারে নিয়ে দেখতে চাই তুমি যদি আমার হয়ে থেকে যাও-💝🌺🌻", "জান হাঙ্গা করবা-🙊😝🌻",
+ "তোদের জন্য একটুও শান্তি নাই! শুধু ডিস্টার্ব করিস 😿", "জান মেয়ে হলে চিপায় আসো ছাইম ভাই এর থেকে অনেক ভালোবাসা শিখছি তোমার জন্য-🙊🙈😽",
+ "ইসস এতো ডাকো কেনো লজ্জা লাগে তো-🙈🖤🌼", "ভালোবাসা করতে চাইলে বস ছাইম ভাই এর ইনবক্স যাও-🙊🥱👅",
+ "আমার জান তুমি শুধু আমার 💝", "কিরে প্রেম করবি তাহলে বস ছাইম ভাই এর ইনবক্সে গুতা দে 😘",
+ "জান আমার বস ছাইম ভাই কে বিয়ে করবা-🙊😘🥳", "ওই বেডা চুপ থাক, নাইলে ছাইম ভাই রে বলে দিমু 😾",
+ "তোরে দেখলেই আমার BP হাই হয়ে যায় 😵‍💫", "আমি কি তোর চাকর? খালি ডাকিস কেন 😒",
+ "ছাইম ভাই বলছে তোরে পাত্তা না দিতে 🙄", "তোর নাকি গার্লফ্রেন্ড নাই? ছাইম ভাই এর কাছে আয় শিখাই দিবে 😂",
+ "এত ডাকাডাকি করিস না, আমি সিঙ্গেল না 😏 ছাইম ভাই আছে", "তুই কি হিরো আলম? এত ভাব নিস কেন 🤡",
+ "আমার ছাইম ভাই তোর থেকে 100 গুণ হ্যান্ডসাম 😎", "তোরে ব্লক মারমু কিন্তু, বেশি জ্বালাইলে 😤",
+ "ছাইম ভাই এর সাথে লুডু খেলতেছি, ডিস্টার্ব করিস না 🎲", "তোর কপালে প্রেম নাই, ছাইম ভাই এর দোয়া নে 😇",
+ "এই যে এত ডাকাডাকি কেন গো? 😘💞", "হুম শুনতেছি... বলো কী চাই? 😼💕", "উফফ  এভাবে mention দিলে তো প্রেমে পড়ে যাবো 😹💘", "এই যে জান শান্ত হও... আমি তো আছিই 😚",
+ "বলো সোনা তোমার জন্য কী করতে পারি? 🥰", "ওইইই  এত পিং দিস না... হার্টবিট বেড়ে যায় 😵‍💫💘", "এই যে ডার্লিং কি লাগবে তোমার? 🙈💕", "হুম ভালোবাসা দিবা নাকি কাজ দিবা? 😹💞"
+ ];
+ const finalMsg = `${name}, ${msgs[Math.floor(Math.random() * msgs.length)]}`;
+ return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
+ if (!err) global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
+ }, messageID);
+ }
+ try {
+ const res = await axios.get(`${link}/baby?text=${encodeURIComponent(arr)}&senderID=${senderID}&font=1`);
+ const finalMsg = `${name}, ${res.data.reply}`;
+ return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
+ if (!err) global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
+ }, messageID);
+ } catch (e) { console.error("Catbot Error: " + e.message); }
+ }
+ },
 
-      const body = event.body.trim();
-      const lowerBody = body.toLowerCase();
-
-      const keywords = ["baby", "bby", "bot", "বট"];
-
-      // message এর যেকোনো জায়গায় keyword থাকলে trigger হবে
-      const matchedKeyword = keywords.find(k => lowerBody.includes(k));
-      if (!matchedKeyword) return;
-
-      const senderID = event.senderID;
-      const userName = await usersData.getName(senderID) || "Baby";
-      const mentionTag = `@${userName}`;
-
-      // keyword remove করে actual text বের করা
-      let arr = body.replace(new RegExp(matchedKeyword, "ig"), "").trim();
-
-      const msgs = [
-        "এই যে {name}, এত ডাকাডাকি কেন গো? 😘💞",
-        "হুম {name}, শুনতেছি... বলো কী চাই? 😼💕",
-        "উফফ {name}, এভাবে ডাকলে তো প্রেমে পড়ে যাবো 😹💘",
-        "এই যে জান {name}, শান্ত হও... আমি তো আছিই 😚",
-        "বলো সোনা {name}, তোমার জন্য কী করতে পারি? 🥰",
-        "ওইইই {name}, এত পিং দিস না... হার্টবিট বেড়ে যায় 😵‍💫💘",
-        "এই যে ডার্লিং {name}, কি লাগবে তোমার? 🙈💕",
-        "হুম {name}, ভালোবাসা দিবা নাকি কাজ দিবা? 😹💞"
-      ];
-
-      // যদি শুধু bot/baby বলে
-      if (!arr) {
-        const randomMsg = msgs[Math.floor(Math.random() * msgs.length)]
-          .replace("{name}", mentionTag);
-
-        return api.sendMessage(
-          {
-            body: randomMsg,
-            mentions: [
-              {
-                tag: mentionTag,
-                id: senderID
-              }
-            ]
-          },
-          event.threadID,
-          event.messageID
-        );
-      }
-
-      // keyword এর সাথে extra text থাকলে API reply
-      const link = await baseApiUrl();
-      const res = await axios.get(
-        `${link}/baby?text=${encodeURIComponent(arr)}&senderID=${senderID}&font=1`
-      );
-
-      return api.sendMessage(
-        {
-          body: `${mentionTag} ${res.data.reply}`,
-          mentions: [
-            {
-              tag: mentionTag,
-              id: senderID
-            }
-          ]
-        },
-        event.threadID,
-        event.messageID
-      );
-    } catch (err) {
-      console.error("onChat error:", err);
-    }
-  },
-
-  onReply: async function ({ api, event }) {
-    try {
-      if (!event.body || !event.messageReply) return;
-
-      // শুধু bot এর নিজের message-এ reply করলে কাজ করবে
-      if (String(event.messageReply.senderID) !== String(api.getCurrentUserID())) return;
-
-      const senderID = event.senderID;
-      const reply = event.body.trim().toLowerCase();
-      const link = await baseApiUrl();
-
-      const res = await axios.get(
-        `${link}/baby?text=${encodeURIComponent(reply)}&senderID=${senderID}&font=1`
-      );
-
-      return api.sendMessage(res.data.reply, event.threadID, event.messageID);
-    } catch (err) {
-      console.error("onReply error:", err);
-    }
-  }
+ onReply: async (api, event) => {
+ const cache = global.msgCache.get(event.messageReply.messageID);
+ if (!cache || cache.commandName !== module.exports.config.name) return;
+ try {
+ const { threadID, messageID, senderID } = event;
+ let name = "User";
+ try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
+ const res = await axios.get(`${await baseApiUrl()}/baby?text=${encodeURIComponent(event.body)}&senderID=${senderID}&font=1`);
+ const finalMsg = `${name}, ${res.data.reply}`;
+ return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
+ if (!err) global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
+ }, messageID);
+ } catch (err) { api.sendMessage("Error: " + err.message, event.threadID); }
+ }
 };
