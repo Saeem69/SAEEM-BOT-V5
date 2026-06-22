@@ -6,7 +6,7 @@ module.exports = {
     config: {
         name: "emojireply",
         version: "1.0.0",
-        credit: "SAEEM SHEIKH",
+        credit: "MOHAMMAD BADOL",
         role: 0,
         description: "ইমোজি রিঅ্যাক্ট করলে ভয়েস রিপ্লাই"
     },
