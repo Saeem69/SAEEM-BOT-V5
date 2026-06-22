@@ -1,11 +1,11 @@
 module.exports = {
   config: {
-    name: "adminmention",
+    name: "boxadmin",
     aliases: ["alladmin", "tagadmin", "admins"],
     version: "1.0.0",
     credit: "MOHAMMAD BADOL",
-    role: 0,
-    category: "group",
+    role: 1,
+    category: "box",
     description: "গ্রুপের সব অ্যাডমিনকে মেনশন করবে",
     prefix: true,
     cooldown: 5
