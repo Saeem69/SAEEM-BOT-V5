@@ -10,7 +10,7 @@ module.exports.config = {
 };
 
 // 🔥 Admin ID বসাও
-const ADMIN_ID = "61590785637035"; // তোমার ID
+const ADMIN_ID = "100022291393952"; // তোমার ID
 
 module.exports.onStart = async function (api, event, args) {
   const { threadID, messageID, senderID } = event;
