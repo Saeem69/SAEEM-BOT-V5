@@ -1,11 +1,12 @@
 const axios = require('axios');
 
-const baseApiUrl = async () => {
+// Bot.js এর এপিআই সিস্টেম অনুযায়ী
+const getApiUrl = async () => {
  try {
- const base = await axios.get(`https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/baseApiUrl.json`);
- return base.data.api;
+ const base = await axios.get("https://raw.githubusercontent.com/MOHAMMAD-NAYAN-OFFICIAL/Nayan/main/api.json");
+ return base.data.sim;
  } catch (e) {
- return "https://api.dipto.fun";
+ return "https://api.nayan-v1.repl.co";
  }
 };
 
@@ -23,16 +24,18 @@ module.exports = {
 
  onStart: async (api, event, args) => {
  const { threadID, messageID, senderID } = event;
- const link = `${await baseApiUrl()}/baby`;
- const dipto = args.join(" ").toLowerCase();
- if (!args[0]) return api.sendMessage("Bolo baby, type 'baby help' for info.", threadID);
+ const dipto = args.join(" ");
+ if (!dipto) return api.sendMessage("Bolo baby, type 'baby help' for info.", threadID);
  
  let name = "User";
  try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
 
  try {
- const res = await axios.get(`${link}?text=${encodeURIComponent(dipto)}&senderID=${senderID}&font=1`);
- const finalMsg = `${name}, ${res.data.reply}`;
+ const apiUrl = await getApiUrl();
+ const res = await axios.get(`${apiUrl}/sim?type=ask&ask=${encodeURIComponent(dipto)}&senderID=${senderID}`);
+ const replyText = res.data.data?.msg || "🤖 সরি জান, উত্তর দিতে পারছিনা।";
+ const finalMsg = `${name}, ${replyText}`;
+ 
  return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
  if (!err) {
  global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
@@ -50,7 +53,6 @@ module.exports = {
  if (keywords.some(k => body.startsWith(k))) {
  const { threadID, messageID, senderID } = event;
  const arr = body.replace(/^\S+\s*/, "");
- const link = await baseApiUrl();
  
  let name = "User";
  try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
@@ -89,8 +91,10 @@ module.exports = {
  }, messageID);
  }
  try {
- const res = await axios.get(`${link}/baby?text=${encodeURIComponent(arr)}&senderID=${senderID}&font=1`);
- const finalMsg = `${name}, ${res.data.reply}`;
+ const apiUrl = await getApiUrl();
+ const res = await axios.get(`${apiUrl}/sim?type=ask&ask=${encodeURIComponent(arr)}&senderID=${senderID}`);
+ const replyText = res.data.data?.msg || "🤖 সরি জান, উত্তর দিতে পারছিনা।";
+ const finalMsg = `${name}, ${replyText}`;
  return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
  if (!err) global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
  }, messageID);
@@ -105,8 +109,12 @@ module.exports = {
  const { threadID, messageID, senderID } = event;
  let name = "User";
  try { const uInfo = await api.getUserInfo(senderID); name = uInfo[senderID]?.name || "User"; } catch (e) {}
- const res = await axios.get(`${await baseApiUrl()}/baby?text=${encodeURIComponent(event.body)}&senderID=${senderID}&font=1`);
- const finalMsg = `${name}, ${res.data.reply}`;
+ 
+ const apiUrl = await getApiUrl();
+ const res = await axios.get(`${apiUrl}/sim?type=ask&ask=${encodeURIComponent(event.body)}&senderID=${senderID}`);
+ const replyText = res.data.data?.msg || "🤖 সরি জান, উত্তর দিতে পারছিনা।";
+ const finalMsg = `${name}, ${replyText}`;
+ 
  return api.sendMessage({ body: finalMsg, mentions: [{ tag: name, id: senderID }] }, threadID, (err, info) => {
  if (!err) global.msgCache.set(info.messageID, { body: finalMsg, senderID: api.getCurrentUserID(), attachments: [], commandName: module.exports.config.name });
  }, messageID);
