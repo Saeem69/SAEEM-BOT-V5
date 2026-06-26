@@ -1,4 +1,4 @@
-‎$cmd add hot.js module.exports = {
+module.exports = {
 ‎  config: {
 ‎    name: "hot",
 ‎    version: "1.0",
