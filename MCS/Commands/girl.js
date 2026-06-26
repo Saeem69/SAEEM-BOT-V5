@@ -21,7 +21,7 @@ module.exports.onStart = async function (api, event, args) {
 "https://i.postimg.cc/sgrWyTSD/E-B9eb-AWUAINyt-B.jpg",
 "https://i.postimg.cc/TYcj48LJ/E02i-P-q-XIAE62tu.jpg",
 "https://i.postimg.cc/MpK0ks12/E02i-P-w-WYAEbvgg.jpg",
-"https://i.postimg.cc/k5LWbqzq/E02i-P-x-XIAAy-K2k.jpg"
+"https://i.postimg.cc/k5LWbqzq/E02i-P-x-XIAAy-K2k.jpg",
 "https://i.postimg.cc/sgrWyTSD/E-B9eb-AWUAINyt-B.jpg",
 "https://i.postimg.cc/TYcj48LJ/E02i-P-q-XIAE62tu.jpg",
 "https://i.postimg.cc/MpK0ks12/E02i-P-w-WYAEbvgg.jpg",
