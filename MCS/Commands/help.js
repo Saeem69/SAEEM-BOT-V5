@@ -16,10 +16,10 @@ module.exports = {
  onStart: async (api, event, args) => {
  const config = JSON.parse(fs.readFileSync(path.join(__dirname, "../../config.json"), "utf-8"));
  const prefix = config.BOT_INFO.PREFIX;
- const botName = config.BOT_INFO.BOT_NAME || "TONNI-AKTER";
+ const botName = config.BOT_INFO.BOT_NAME || "𝐒𝐀𝐄𝐄𝐌-𝐁𝐎𝐓-𝐕𝟓";
  const commands = global.commands;
  const ownerName = "SAEEM SHEIKH";
- const imgURL = "https://drive.google.com/uc?export=download&id=1QbYtELhnXdMrST3F4e3ULU3vMNvr8pGP";
+ const imgURL = "https://drive.google.com/uc?export=download&id=1nsw5lrMIxJ71kV4iUf_J4CFTC1EY3zIo";
 
  const getStream = async (url) => {
  const res = await axios.get(url, { responseType: "stream" });
