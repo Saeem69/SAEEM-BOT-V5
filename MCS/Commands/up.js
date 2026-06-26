@@ -41,20 +41,18 @@ module.exports.onStart = async function (api, event, args) {
 
  const msg =
 `╭━━〔 🤖 𝐁𝐎𝐓 𝐒𝐓𝐀𝐓𝐔𝐒 〕━━╮
+ │ 🟢 𝐒𝐓𝐀𝐓𝐔𝐒 : Online
+ │ ⚡ 𝐏𝐈𝐍𝐆 : ${ping} ms
+ 
+ │ ⏰ 𝐔𝐏𝐓𝐈𝐌𝐄 :
+ ${day} Day ${hour} Hour ${min} Min ${sec} Sec
+ 
+ │ 💾 𝐑𝐀𝐌 : ${usedRam}GB / ${totalRam}GB
+ │ 🖥️ 𝐎𝐒 : ${os.platform()}
+ │ 📦 𝐍𝐎𝐃𝐄 : ${process.version}
 
-🟢 𝐒𝐓𝐀𝐓𝐔𝐒 : Online
-⚡ 𝐏𝐈𝐍𝐆 : ${ping} ms
-
-⏰ 𝐔𝐏𝐓𝐈𝐌𝐄 :
-${day} Day ${hour} Hour ${min} Min ${sec} Sec
-
-💾 𝐑𝐀𝐌 : ${usedRam}GB / ${totalRam}GB
-🖥️ 𝐎𝐒 : ${os.platform()}
-📦 𝐍𝐎𝐃𝐄 : ${process.version}
-
-👑 𝐎𝐖𝐍𝐄𝐑 : 𝐒𝐀𝐄𝐄𝐌 𝐒𝐇𝐄𝐈𝐊𝐇
-
-╰━━━━━━━━━━━━━━━━━━╯`;
+ │ 👑 𝐎𝐖𝐍𝐄𝐑 : 𝐒𝐀𝐄𝐄𝐌 𝐒𝐇𝐄𝐈𝐊𝐇
+ ╰━━━━━━━━━━━━━━━━━━━━━━━╯`;
 
  return api.sendMessage(
  {
