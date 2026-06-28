@@ -26,7 +26,7 @@ module.exports = {
         if (!mode) {
             const helpMsg = 
 `╭──────────────────╮
-   ⚙️ 𝗕𝗔𝗗𝗢𝗟-𝗕𝗢𝗧 𝗩𝟱 𝗖𝗢𝗡𝗙𝗜𝗚 𝗠𝗘𝗡𝗨 ⚙️
+   ⚙️ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 𝗖𝗢𝗡𝗙𝗜𝗚 𝗠𝗘𝗡𝗨 ⚙️
 ╰──────────────────╯
 
 ╭━━━ [ 📊 𝗦𝗬𝗦𝗧𝗘𝗠 𝗦𝗧𝗔𝗧𝗨𝗦 ] ━━━📂
@@ -40,7 +40,7 @@ module.exports = {
 ┃ 👉 ${prefix}config toggle antiout
 ╰━━━━━━━━━━━━━━━━━━━⚙️
 
-╭━━━ [ 👥 𝗔𝗗𝗠𝗜𝗡 𝗠𝗔𝗡𝗔𝗚𝗘𝗠𝗘𝗡𝗧 ] ━━━👑
+╭━━━ [ 👥 𝗔𝗗𝗠𝗜𝗡 𝗠𝗔𝗡𝗔𝗚𝗘𝗠𝗘𝗡𝗧 ] 👑
 ┃ 👉 ${prefix}config admin add [UID]
 ┃ 👉 ${prefix}config admin remove [UID]
 ╰━━━━━━━━━━━━━━━━━━━👤
