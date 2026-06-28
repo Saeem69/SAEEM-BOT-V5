@@ -19,7 +19,7 @@ module.exports = {
  const botName = config.BOT_INFO.BOT_NAME || "𝐒𝐀𝐄𝐄𝐌-𝐁𝐎𝐓-𝐕𝟓";
  const commands = global.commands;
  const ownerName = "SAEEM SHEIKH";
- const imgURL = "https://drive.google.com/uc?export=download&id=1nsw5lrMIxJ71kV4iUf_J4CFTC1EY3zIo";
+ const imgURL = "https://drive.google.com/uc?export=download&id=1V7jM9QKXsG4vne_wbhOCLgJvEWg4vDZ-";
 
  const getStream = async (url) => {
  const res = await axios.get(url, { responseType: "stream" });
