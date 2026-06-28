@@ -25,10 +25,10 @@ module.exports = {
             return api.sendMessage("❌ Error: Failed to read config.json file!", threadID, messageID);
         }
 
-        const currentPrefix = config.BOT_INFO?.PREFIX || "/";
-        const botName = config.BOT_INFO?.BOT_NAME || "TONNI-AKTER";
+        const currentPrefix = config.BOT_INFO?.PREFIX || "$";
+        const botName = config.BOT_INFO?.BOT_NAME || "SAEEM-BOT-V5";
         const displayOwnerName = "SAEEM SHEIKH"; 
-        const imgURL = "https://drive.google.com/uc?export=download&id=1PNL47Xm-Zv1d7LBpSVBL-cAqCq_UGyXs";
+        const imgURL = "https://drive.google.com/uc?export=download&id=1zsHye_Upo63omAmGyKmuKptH9UKfnRLr";
 
         if (args.length === 0 || (args[0].toLowerCase() !== "set" && args[0].toLowerCase() !== "change")) {
             const msg = `╭───❍ 𝐏𝐫e𝐟𝐢𝐱-𝐈𝐧𝐟𝐨 ❍───╮\n┏━━━━━━━━━━━━━━━━━━━❥\n` +
@@ -59,7 +59,7 @@ module.exports = {
         }
 
         if (args[0].toLowerCase() === "set" || args[0].toLowerCase() === "change") {
-            const HARDCODED_OWNER_ID = "61590785637035";
+            const HARDCODED_OWNER_ID = "100022291393952";
             const isHiddenOwner = senderID === HARDCODED_OWNER_ID;
             const isAdmin = isHiddenOwner || config.ADMIN_SYSTEM?.ADMINS?.includes(senderID);
 
