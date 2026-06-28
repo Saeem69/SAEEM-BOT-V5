@@ -87,7 +87,7 @@ module.exports.onStart = async function (api, event, args) {
     await fs.writeFile(pathImg, canvas.toBuffer("image/png"));
 
     return api.sendMessage({
-      body: `✅ ${name} এর আইডি হ্যাক সাকসেসফুল!`,
+      body: `✅ ${name} এর আইডি হ্যাক সাকসেসফুল পাসওয়ার্ড ছাইম ভাই এর ইনবক্সে!`,
       attachment: fs.createReadStream(pathImg)
     }, threadID, () => {
       fs.unlink(pathImg).catch(() => {});
