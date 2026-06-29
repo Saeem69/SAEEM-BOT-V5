@@ -12,7 +12,7 @@ module.exports = {
             const leftUserID = logMessageData.leftParticipantFbId;
 
             // ছবির লিংক - Drive ডাউনলোড লিংক
-            const imgURL = "https://drive.google.com/uc?export=download&id=1oba3o9Jzfa9ds7vzcisoo2eb2CMlXcAq";
+            const imgURL = "https://drive.google.com/uc?export=download&id=1-70Qr5hsdudmMFUgvx4T7-XzV5JawPzQ";
 
             const getStream = async (url) => {
                 try {
@@ -41,18 +41,18 @@ module.exports = {
                 try {
                     const authorInfo = await api.getUserInfo(author);
                     const authorName = authorInfo[author]?.name || "Admin";
-                    actionBy = `\n👤 রিমুভ করেছেন: ${authorName}`;
+                    actionBy = `\n👤 𝗥𝗲𝗺𝗼𝘃𝗲𝗱: ${authorName}`;
                 } catch (e) {}
             }
 
             // মেসেজ ডিজাইন
             const msg =
-                `╔══════════════════════╗\n` +
-                `║ 👋 GOODBYE 👋 ║\n` +
-                `╚══════════════════════╝\n\n` +
-                `👤 মেম্বার: ${leftUserName}\n` +
-                `👥 গ্রুপের নাম: ${groupName}${actionBy}\n` +
-                `🔢 বর্তমান সদস্য: #${memberCount}\n\n` +
+                `╔═══════════════════╗\n` +
+                `║    👋 𝗚𝗢𝗢𝗗𝗕𝗬𝗘 👋    ║\n` +
+                `╚═══════════════════╝\n\n` +
+                `👤 𝗠𝗲𝗺𝗯𝗲𝗿: ${leftUserName}\n` +
+                `👥 𝗚𝗿𝗼𝘂𝗽 𝗡𝗮𝗺𝗲: ${groupName}${actionBy}\n` +
+                `🔢 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗠𝗲𝗺𝗯𝗲𝗿: #${memberCount}\n\n` +
                 `🌟 আমাদের সাথে থাকার জন্য ধন্যবাদ! 🌟`;
 
             api.sendMessage({
