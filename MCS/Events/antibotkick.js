@@ -1,6 +1,8 @@
 const fs = require("fs-extra");
 const path = require("path");
-
+const axios = require("axios");
+const BANNER =
+"https://drive.google.com/uc?export=download&id=13r8scpcFwOw1FzDw9JHT-mHme5xNLk6u";
 // ════════════════ নোটিফিকেশন গ্রুপ আইডি ════════════════
 const NOTICE_GROUP_ID = "27612074005084063"; 
 
@@ -56,13 +58,41 @@ const ownerName = "SAEEM SHEIKH";
 ⏰ সময়: ${new Date().toLocaleString("bn-BD", { timeZone: "Asia/Dhaka" })}
 
 ━━━━━━━━━━━━━━━━━━━━━
-⚡ TONNI-AKTER এখন এই গ্রুপে এক্টিভ!`;
+⚡ 𝄞⋆⃝🧚𝐒𝐀𝐄𝐄𝐌-𝐁𝐎𝐓-𝐕𝟓🧚‍⋆⃝𝄞 এখন এই গ্রুপে এক্টিভ!`;
 
                     // নির্দিষ্ট নোটিফিকেশন গ্রুপে মেসেজ পাঠানো
-                    await api.sendMessage(msg, NOTICE_GROUP_ID);
+                    const imgPath = path.join(__dirname, "cache", "antibotkick.jpg");
+
+const response = await axios({
+  url: BANNER,
+  method: "GET",
+  responseType: "stream"
+});
+
+await fs.ensureDir(path.join(__dirname, "cache"));
+
+const writer = fs.createWriteStream(imgPath);
+response.data.pipe(writer);
+
+await new Promise((resolve, reject) => {
+  writer.on("finish", resolve);
+  writer.on("error", reject);
+});
+
+await api.sendMessage(
+{
+  body: msg,
+  attachment: fs.createReadStream(imgPath)
+},
+NOTICE_GROUP_ID,
+() => {
+  if (fs.existsSync(imgPath))
+    fs.unlinkSync(imgPath);
+}
+);
 
                     // যে গ্রুপে অ্যাড করা হয়েছে সেখানে থ্যাংক ইউ মেসেজ
-                    await api.sendMessage(`✅ ধন্যবাদ ${adderName}! TONNI-AKTER এখন এই গ্রুপে এক্টিভ।\n\n/help লিখে সব কমান্ড দেখুন 🦵`, threadID);
+                    await api.sendMessage(`✅ ধন্যবাদ ${adderName}! 𝄞⋆⃝🧚𝐒𝐀𝐄𝐄𝐌-𝐁𝐎𝐓-𝐕𝟓🧚‍⋆⃝𝄞 এখন এই গ্রুপে এক্টিভ।\n\n$help লিখে সব কমান্ড দেখুন 🦵`, threadID);
 
                 } catch (e) {
                     console.log("[ANTI-KICK ADD ERROR]", e.message);
@@ -117,7 +147,35 @@ const ownerName = "SAEEM SHEIKH";
 ⚡ TONNI-AKTER`;
 
                     // নির্দিষ্ট নোটিফিকেশন গ্রুপে মেসেজ পাঠানো
-                    await api.sendMessage(msg, NOTICE_GROUP_ID);
+                    const imgPath = path.join(__dirname, "cache", "antibotkick.jpg");
+
+const response = await axios({
+  url: BANNER,
+  method: "GET",
+  responseType: "stream"
+});
+
+await fs.ensureDir(path.join(__dirname, "cache"));
+
+const writer = fs.createWriteStream(imgPath);
+response.data.pipe(writer);
+
+await new Promise((resolve, reject) => {
+  writer.on("finish", resolve);
+  writer.on("error", reject);
+});
+
+await api.sendMessage(
+{
+  body: msg,
+  attachment: fs.createReadStream(imgPath)
+},
+NOTICE_GROUP_ID,
+() => {
+  if (fs.existsSync(imgPath))
+    fs.unlinkSync(imgPath);
+}
+);
 
                     // লগ ফাইলে সেভ
                     const logDir = path.join(__dirname, "../../logs");
