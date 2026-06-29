@@ -44,7 +44,7 @@ module.exports.onStart = async function (api, event, args) {
     const imgPath = path.join(cacheDir, "rules.jpg");
 
     request(
-        encodeURI("https://drive.google.com/uc?export=download&id=1Hvpc_64T7bEp2V_lyVdqylsUd2VBZHnC")
+        encodeURI("https://drive.google.com/uc?export=download&id=17918PfbKjxkQhUBOEqSy6WbRFYPa_6At")
     )
     .pipe(fs.createWriteStream(imgPath))
     .on("close", () => {
