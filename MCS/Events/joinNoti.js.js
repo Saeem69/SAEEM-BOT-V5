@@ -37,14 +37,14 @@ module.exports = {
         const config = getConfig();
 
         // ছবির লিংক - Drive ডাউনলোড লিংক
-        const imgURL = "https://drive.google.com/uc?export=view&id=1HV--VPcV90f99PIWylHqyNdsdJr_wDpc";
+        const imgURL = "https://drive.google.com/uc?export=download&id=1moLeK_6j9-MwSTZGzlU_WRK3Eo29yZun";
 
         // গ্রুপের তথ্য
         const threadInfo = await api.getThreadInfo(threadID);
         const groupName = threadInfo.threadName || "এই গ্রুপ";
         const memberCount = threadInfo.participantIDs.length;
         const prefix = config.BOT_INFO?.PREFIX || "$";
-        const botName = config.BOT_INFO?.NAME || "TONNI-AKTER";
+        const botName = config.BOT_INFO?.NAME || "SAEEM-BOT-V5";
         const owner = config.OWNER_LOCK?.NAME || "SAEEM SHEIKH";
 
         // অ্যাডমিন নাম
