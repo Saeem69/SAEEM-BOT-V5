@@ -18,15 +18,8 @@ module.exports.onEvent = async function (api, event) {
     const { threadID, logMessageType, logMessageData, author } = event;
     const botID = api.getCurrentUserID();
 
-    let config;
-    try {
-        config = require("../../config.json");
-    } catch (e) {
-        console.log("[ANTI-KICK] config.json লোড এরর");
-        return;
-    }
-
-    const ownerName = config.OWNER_LOCK?.NAME || "Owner";
+    // Owner Lock Removed
+const ownerName = "SAEEM SHEIKH";
 
     // ═══════════════════ বট অ্যাড করলে ═══════════════════
     if (logMessageType === "log:subscribe") {
