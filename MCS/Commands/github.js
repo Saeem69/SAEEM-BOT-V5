@@ -25,8 +25,8 @@ module.exports.onStart = async function (api, event, args) {
             `│ ❌ Please provide GitHub username!\n` +
             `│\n` +
             `│ 💡 Example:\n` +
-            `│ /github torvalds\n` +
-            `│ /github mohammadbadol\n` +
+            `│ $github torvalds\n` +
+            `│ $github saeemsheikh\n` +
             `╰───────────────╯`,
             threadID,
             messageID
@@ -49,7 +49,7 @@ module.exports.onStart = async function (api, event, args) {
         // Custom box design - Full English
         const box = `
 ╭─────────────────╮
-│ 🤖 BADOL-BOT V5 │
+│ 🤖 SAEEM-BOT V5 │
 ├─────────────────┤
 │ 🐙 *Username:* ${u.login}
 │ 🆔 *ID:* ${u.id}
