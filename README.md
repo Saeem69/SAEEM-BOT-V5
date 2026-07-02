@@ -9,7 +9,7 @@
 
 <!-- Image -->
 <p align="center">
-  <img src="https://i.imgur.com/u7VnPzH.png" width="300">
+  <img src="https://i.imgur.com/DcIYFjd.jpeg" width="300">
 </p>
 
 <!-- COLORED + BOLD TITLE (NO ANIMATION) -->
