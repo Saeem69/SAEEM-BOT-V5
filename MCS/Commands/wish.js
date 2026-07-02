@@ -80,11 +80,11 @@ module.exports.onStart = async function (api, event, args) {
 
         await api.unsendMessage(waitMsg.messageID).catch(() => {});
         
-        const outputMessage = `┏━━『 SAEEM-BOT-V5 』━━┓\n` +
-                              ` 👤 Birthday Person: ${targetName}\n\n` +
+        const outputMessage = `┏━━━『 SAEEM-BOT-V5 』━━┓\n` +
+                              ` 👤 BIRTHDAY PERSON: ${targetName}\n\n` +
                               ` 💬 ${randomMsg}\n\n` +
                               ` 💌 POWERED BY: SAEEM-BOT-V5\n` +
-                              `┗━━━━━━━━━━━━━━━━━━━━┛`;
+                              `┗━━━━━━━━━━━━━━━━━━━┛`;
 
         await api.sendMessage({
             body: outputMessage,
