@@ -17,7 +17,7 @@ module.exports = {
         const configPath = path.join(__dirname, "../../config.json");
         let config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
 
-        const prefix = config.BOT_INFO?.PREFIX || "/";
+        const prefix = config.BOT_INFO?.PREFIX || "$";
         const mode = args[0]?.toLowerCase();
         const target = args[1]?.toLowerCase();
         const value = args[2];
@@ -59,7 +59,7 @@ module.exports = {
         if (mode === "status") {
             const statusMsg = 
 `╭──────────────────╮
-   📊 𝗕𝗔𝗗𝗢𝗟-𝗕𝗢𝗧 𝗟𝗜𝗩𝗘 𝗦𝗧𝗔𝗧𝗨𝗦
+   📊 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧 𝗟𝗜𝗩𝗘 𝗦𝗧𝗔𝗧𝗨𝗦
 ╰──────────────────╯
 
 ╭━━━ [ 🤖 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢 ] ━━━✨
