@@ -36,7 +36,7 @@ module.exports.onStart = async function (api, event, args) {
     }
 
     // আপনার ছবির Direct Link
-    const IMAGE_URL = "https://drive.google.com/uc?export=download&id=19fh32VLvSJ39Mu0rR2k8MHi-TTJqpC03";
+    const IMAGE_URL = "https://drive.google.com/uc?export=download&id=1DxAIX1MGBjeJDhbjK0QbNeGxUiEn33yu";
 
     // বোল্ড ফন্টে কনভার্ট করার ফাংশন (𝐀 𝐁 𝐂 𝐃...)
     function toBold(text) {
