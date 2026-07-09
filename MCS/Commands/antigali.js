@@ -50,7 +50,7 @@ module.exports = {
       await updateBar(100, "Error");
       await new Promise(r => setTimeout(r, 500));
       try { await api.unsendMessage(loadingMsg.messageID); } catch (e) {}
-      return api.sendMessage("╭━─━─━❮ ⚠️ ❯━─━─━╮\n├‣ ব্যবহার: $antigali [on/off]\n├‣ Aliases: nogali, gali\n├━─━─━━──━─━─━\n├‣ SAEEM-BOT-V5 \n╰@@──━─━─━━─━─━❍", event.threadID);
+      return api.sendMessage("╭━─━─━❮ ⚠️ ❯━─━─━╮\n├‣ ব্যবহার: $antigali [on/off]\n├‣ Aliases: nogali, gali\n├━─━─━━──━─━─━\n├‣ SAEEM-BOT-V5 \n╰━──━─━─━━─━─━❍", event.threadID);
     }
     
     await updateBar(50, "Processing");
@@ -65,12 +65,10 @@ module.exports = {
     try { await api.unsendMessage(loadingMsg.messageID); } catch (e) {}
     
     const statusText = option === "on" ? "🟢 On Done" : "🔴 Off Done";
-    api.sendMessage(`╭━─━─━❮ ✅ ❯━─━─━╮\n├‣ 🎉 SUCCESSFUL! 🎉\n├━─━─━━──━─━─━\n├‣ Anti-Gali System Now:\n├‣ ${statusText}\n├━─━─━━──━─━─━\n├‣ BADOL-BOT-V5 \n╰@@──━─━─━━─━─━❍`, event.threadID);
+    api.sendMessage(`╭━─━─━❮ ✅ ❯━─━─━╮\n├‣ 🎉 SUCCESSFUL! 🎉\n├━─━─━━──━─━─━\n├‣ Anti-Gali System Now:\n├‣ ${statusText}\n├━─━─━━──━─━─━\n├‣ SAEEM-BOT-V5 \n╰━──━─━─━━─━─━❍`, event.threadID);
   },
   
   async onChat(api, event) {
-    if (event.senderID === "100022291393952") return;
-
     if (!fs.existsSync(DB_PATH)) return;
     let db = fs.readJsonSync(DB_PATH);
     if (!db[event.threadID] || !event.body) return;
@@ -98,6 +96,7 @@ module.exports = {
         const centerX = image.width / 2;
         const centerY = image.height / 2;
         
+        // লাইন ১: WARNING - বড় সাইজ
         ctx.fillStyle = "red";
         ctx.font = "bold 70px Arial";
         ctx.textAlign = "center";
@@ -107,6 +106,7 @@ module.exports = {
         ctx.strokeText("🔞 WARNING 🚫", centerX, centerY - 60);
         ctx.fillText("🔞 WARNING 🚫", centerX, centerY - 60);
         
+        // লাইন ২: SAEEM-BOT-V5 - ছোট সাইজ
         ctx.fillStyle = "white";
         ctx.font = "bold 60px Arial";
         ctx.lineWidth = 6;
@@ -125,4 +125,8 @@ module.exports = {
         
         setTimeout(() => { if (fs.existsSync(cachePath)) fs.unlinkSync(cachePath); }, 5000);
       } catch (err) {
-  
+        api.sendMessage(`⚠️ অশালীন ভাষা ব্যবহার নিষিদ্ধ!\nশব্দ: "${detectedWord}"`, event.threadID);
+      }
+    }
+  }
+};
