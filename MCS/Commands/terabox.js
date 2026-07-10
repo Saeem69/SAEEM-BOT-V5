@@ -5,7 +5,7 @@ const path = require("path");
 module.exports.config = {
     name: "terabox",
     version: "1.0.0",
-    role: 0,
+    role: 1,
     credit: "MOHAMMAD BADOL",
     description: "Random video from Terabox",
     prefix: true,
