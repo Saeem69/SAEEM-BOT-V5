@@ -59,29 +59,19 @@ module.exports = {
         api.sendMessage(
           {
             body:
-`╭━━━━━━━━━━━━━━━━━━━━━━╮
-┃      🖤 𝗪𝗘𝗗𝗡𝗘𝗦𝗗𝗔𝗬 🖤
-╰━━━━━━━━━━━━━━━━━━━━━━╯
-
-🎬 𝗥𝗮𝗻𝗱𝗼𝗺 𝗪𝗲𝗱𝗻𝗲𝘀𝗱𝗮𝘆 𝗩𝗶𝗱𝗲𝗼
-
-━━━━━━━━━━━━━━━━━━
-
-🕷️ Dark • Gothic • Mystery
-
-🌙 Keep Calm...
-🖤 Stay Different...
-✨ Enjoy The Video...
-
-━━━━━━━━━━━━━━━━━━
-
-🤖 Powered By
-💀 SAEEM-BOT-V5
-
-👑 Owner : SAEEM SHEIKH 
-
-━━━━━━━━━━━━━━━━━━
-❤️ Thanks For Using My Bot ❤️`,
+`╭━〔 🖤 𝗪𝗘𝗗𝗡𝗘𝗦𝗗𝗔𝗬 🖤 〕━╮
+┃
+┃ 🕸️ Stay Mysterious...
+┃ ✨ Enjoy The Dark Aesthetic
+┃ 🎬 Random Wednesday Video
+┃
+┣━━━━━━━━━━━━━━━━━━━━
+┃ 👤 Requested By :
+┃ ${event.senderID}
+┃
+┃ 🤖 CREDIT BY SAEEM-BOT-V5
+┃
+╰━━━━━━━━━━━━━━━━━━━╯`,
             attachment: fs.createReadStream(filePath)
           },
           threadID,
