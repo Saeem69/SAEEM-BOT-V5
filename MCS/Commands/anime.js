@@ -114,11 +114,11 @@ module.exports.onStart = async function (api, event, args) {
 ┃ ✨ Have Fun!
 ┗━━━━━━━━━━━━━━━━━━━┛
 
-╔════════════════════╗
+╔═══════════════════╗
 ┃ 🤖 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱
 ┃ 👑 𝗢𝘄𝗻𝗲𝗿 : SAEEM SHEIKH 
 ┃ ❤️ Thanks For Using My Bot
-╚════════════════════╝`,
+╚═══════════════════╝`,
           attachment: fs.createReadStream(filePath)
         },
         threadID,
