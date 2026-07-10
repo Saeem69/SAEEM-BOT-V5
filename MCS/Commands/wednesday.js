@@ -24,7 +24,15 @@ module.exports = {
     // ==========================
 
     const videos = [
-      "https://drive.google.com/uc?id=11EGibqXhuQyECaRnG7iCO_Ke_ldDWx1k"
+      "https://drive.google.com/uc?id=11EGibqXhuQyECaRnG7iCO_Ke_ldDWx1k",
+      "https://drive.google.com/uc?id=155KW20eYEAHiK2LO0EtiYu5w5gKR3La3",
+      "https://drive.google.com/uc?id=1BSrtJdFYzdCtoDedFH-6J4K6rH3MyPuj",
+      "https://drive.google.com/uc?id=1TzIQC9w4BwOVs3kh8ZVkYRWBSLj14V3z",
+      "https://drive.google.com/uc?id=1vtAcNumV19nDoNgfHP-y_i-Bo-B2Vo7G",
+      "https://drive.google.com/uc?id=198DJ7IPrKDM1mDQDxE9n4yBBHfEnMn96",
+      "https://drive.google.com/uc?id=1mx2O4RaeQ7vhGXyYX0Iyjm2_EVtf9hX8",
+      "https://drive.google.com/uc?id=1j6h3gWqLjv99hJeNWKUAHA_H0LEmPqSg",
+      "https://drive.google.com/uc?id=1lxghPstx3v0H5NE31GKjmYBb8r8RS9-2"
     ];
 
     const VIDEO_URL =
