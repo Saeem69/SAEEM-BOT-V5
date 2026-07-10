@@ -48,7 +48,7 @@ module.exports = {
         try {
             config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf-8"));
         } catch (e) {
-            return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ❌ ERROR\n┃ Config file load failed\n╚═══════════════════╝`);
+            return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ❌ ERROR\n┃ Config file load failed\n╚═══════════════════╝`);
         }
 
         const action = args[0]?.toLowerCase();
@@ -58,18 +58,18 @@ module.exports = {
 
         if (action === "help" ||!action) {
             const modeStatus = currentMode === "on"? "🟢 ON - All No-Prefix" : "🔴 OFF - Config Based";
-            return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ⚙️ PREFIX MODE\n┃\n┃ Current: ${modeStatus}\n┃\n┃ Commands:\n┃ • on - Enable No-Prefix\n┃ • off - Disable No-Prefix\n┃ • help - Show this menu\n╚═══════════════════╝`);
+            return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ⚙️ PREFIX MODE\n┃\n┃ Current: ${modeStatus}\n┃\n┃ Commands:\n┃ • on - Enable No-Prefix\n┃ • off - Disable No-Prefix\n┃ • help - Show this menu\n╚═══════════════════╝`);
         }
 
-        if (action === "on") {
+        if (action =═== "on") {
             config.BOT_INFO.GLOBAL_PREFIX_MODE = "on";
             try {
                 fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 4), "utf-8");
                 if (typeof global.reloadConfig === "function") global.reloadConfig();
 
-                return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ✅ MODE ACTIVATED\n┃\n┃ Global Prefix: ON\n┃ All commands work\n┃ without prefix now\n┃\n┃ Example: help, admin\n╚═══════════════════╝`);
+                return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ✅ MODE ACTIVATED\n┃\n┃ Global Prefix: ON\n┃ All commands work\n┃ without prefix now\n┃\n┃ Example: help, admin\n╚═══════════════════╝`);
             } catch (e) {
-                return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ❌ ERROR\n┃ Failed to save config\n╚═══════════════════╝`);
+                return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ❌ ERROR\n┃ Failed to save config\n╚═══════════════════╝`);
             }
         }
 
@@ -79,12 +79,12 @@ module.exports = {
                 fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 4), "utf-8");
                 if (typeof global.reloadConfig === "function") global.reloadConfig();
 
-                return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ✅ MODE DEACTIVATED\n┃\n┃ Global Prefix: OFF\n┃ Commands work as per\n┃ individual config\n┃\n┃ prefix: true → $help\n┃ prefix: false → help\n╚═══════════════════╝`);
+                return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ✅ MODE DEACTIVATED\n┃\n┃ Global Prefix: OFF\n┃ Commands work as per\n┃ individual config\n┃\n┃ prefix: true → $help\n┃ prefix: false → help\n╚═══════════════════╝`);
             } catch (e) {
-                return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ❌ ERROR\n┃ Failed to save config\n╚═══════════════════╝`);
+                return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ❌ ERROR\n┃ Failed to save config\n╚═══════════════════╝`);
             }
         }
 
-        return sendWithImage(`╔═ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ═╗\n┃ ⚠️ INVALID\n┃ Use: $prefixmode\n┃ [on/off/help]\n╚═══════════════════╝`);
+        return sendWithImage(`╔══ 𝗦𝗔𝗘𝗘𝗠-𝗕𝗢𝗧-𝗩𝟱 ══╗\n┃ ⚠️ INVALID\n┃ Use: $prefixmode\n┃ [on/off/help]\n╚═══════════════════╝`);
     }
 };
