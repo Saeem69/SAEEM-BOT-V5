@@ -90,9 +90,9 @@ module.exports = {
 
     if (!args || args.length < 2) {
       return api.sendMessage(box("❌ 𝐈𝐍𝐕𝐀𝐋𝐈𝐃 𝐔𝐒𝐀𝐆𝐄", 
-        "│ Syntax: /font <number> <text>\n" +
-        "│ Example: /font 1 SAEEM69\n" +
-        "│ Use '/font list' to see all numbers"
+        "│ Syntax: $font <number> <text>\n" +
+        "│ Example: $font 1 SAEEM69\n" +
+        "│ Use '$font list' to see all numbers"
       ), threadID, messageID);
     }
 
@@ -108,7 +108,7 @@ module.exports = {
     if (!chosenFont) {
       const listNumbers = Object.keys(fontMaps).map((key) => `│ • Number [ ${key} ] = ${fontMaps[key].name}`).join('\n');
       return api.sendMessage(box("❌ 𝐍𝐔𝐌𝐁𝐄Ｒ 𝐍𝐎𝐓 𝐅𝐎𝐔𝐍𝐃", 
-        `${listNumbers}\n│\n│ 💡 Tip: Use /font list`
+        `${listNumbers}\n│\n│ 💡 Tip: Use $font list`
       ), threadID, messageID);
     }
 
