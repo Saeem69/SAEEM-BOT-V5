@@ -8,7 +8,7 @@ const box = (title, content) => {
 module.exports = {
     config: {
         name: "ev",
-        version: "2.0.0",
+        version: "2.0.1",
         credit: "MOHAMMAD BADOL",
         aliases: ["event"],
         role: 1,
@@ -24,7 +24,7 @@ module.exports = {
         const fileName = args[1];
         const code = args.slice(2).join(" ");
 
-        // ev list
+        // ev list - fixed with error handling
         if (sub === "list") {
             const files = fs.readdirSync(evtPath).filter(f => f.endsWith(".js"));
             if (!files.length) return api.sendMessage(
@@ -33,14 +33,28 @@ module.exports = {
             );
 
             let list = "";
-            files.forEach((f, i) => {
-                const evt = require(path.join(evtPath, f));
-                const status = global.events.has(evt.config?.name || f.replace(".js", ""))? "🟢" : "🔴";
-                list += `${i + 1}. ${status} ${f}\n`;
-            });
+            let brokenFiles = [];
+
+            for (let i = 0; i < files.length; i++) {
+                const f = files[i];
+                try {
+                    delete require.cache[require.resolve(path.join(evtPath, f))];
+                    const evt = require(path.join(evtPath, f));
+                    const eventName = evt.config?.name || f.replace(".js", "");
+                    const status = global.events.has(eventName)? "🟢" : "🔴";
+                    list += `${i + 1}. ${status} ${f}\n`;
+                } catch (err) {
+                    brokenFiles.push(`${f} -> ${err.message}`);
+                    list += `${i + 1}. 💥 ${f}\n`;
+                }
+            }
+
+            if (brokenFiles.length) {
+                list += `\n💥 BROKEN FILES:\n${brokenFiles.join("\n")}`;
+            }
 
             return api.sendMessage(
-                box("EVENT LIST", `${list}\n🟢 Loaded | 🔴 Unloaded\nTotal: ${files.length} files`),
+                box("EVENT LIST", `${list}\n🟢 Loaded | 🔴 Unloaded | 💥 Error\nTotal: ${files.length} files`),
                 event.threadID
             );
         }
@@ -80,6 +94,7 @@ module.exports = {
                     );
                 }
             } catch (e) {
+                if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
                 return api.sendMessage(
                     box("ERROR", `❌ ${e.message}`),
                     event.threadID
@@ -100,17 +115,18 @@ module.exports = {
             );
 
             try {
+                delete require.cache[require.resolve(filePath)];
                 const evt = require(filePath);
                 global.events.delete(evt.config?.name || fileName.replace(".js", ""));
-                delete require.cache[require.resolve(filePath)];
                 fs.unlinkSync(filePath);
                 return api.sendMessage(
                     box("DELETED", `🗑️ Event ${fileName} deleted successfully!`),
                     event.threadID
                 );
             } catch (e) {
+                fs.unlinkSync(filePath);
                 return api.sendMessage(
-                    box("ERROR", `❌ ${e.message}`),
+                    box("DELETED", `🗑️ Event ${fileName} deleted with errors: ${e.message}`),
                     event.threadID
                 );
             }
@@ -168,7 +184,7 @@ module.exports = {
                         count++;
                     }
                 } catch (e) {
-                    errors.push(`• ${file}`);
+                    errors.push(`• ${file} -> ${e.message}`);
                 }
             });
 
