@@ -1,4 +1,4 @@
-/ev add monitor.js const fs = require('fs');
+const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
 const db = require("../../Database"); // রুট ফোল্ডারের Database.js
@@ -9,16 +9,18 @@ module.exports.config = {
 };
 
 module.exports.onEvent = async (api, event) => {
-    // ১. ডাটা চেক
-    const threadData = await db.getData(event.threadID, 'threads');
-    if (!threadData) return;
-
-    // ডাটাবেজের সেটিংস অবজেক্ট (ডাটা না থাকলে ডিফল্ট True)
-    const settings = threadData.data || { resend: true, anti: true, calllog: true };
+    // ১. ডাটা চেক ও ডিফল্ট সেটিংস লোড
+    let settings = { resend: true, anti: true, calllog: true };
+    try {
+        const threadData = await db.getData(event.threadID, 'threads');
+        if (threadData && threadData.data) settings = threadData.data;
+    } catch(e) {
+        // ডাটাবেজ রিড করতে এরর আসলেও ডিফল্ট সেটিংস ট্রু থাকবে
+    }
 
     // ২. নিকনেম চেঞ্জ
     if (event.logMessageType === "log:user-nickname") {
-        if (settings.anti === false) return; // সেটিংস অফ থাকলে কাজ করবে না
+        if (settings.anti === false) return;
 
         const actor = (await api.getUserInfo(event.author))[event.author]?.name || "কেউ";
         const target = (await api.getUserInfo(event.logMessageData.participant_id))[event.logMessageData.participant_id]?.name || "কেউ";
@@ -27,26 +29,39 @@ module.exports.onEvent = async (api, event) => {
 
     // ৩. কল ইনফরমেশন
     if (event.logMessageType === "log:thread-call") {
-        if (settings.calllog === false) return; // সেটিংস অফ থাকলে কাজ করবে না
+        if (settings.calllog === false) return;
 
         const log = event.logMessageData;
         if (log.call_status === "started" || log.event === "group_call_started") api.sendMessage(`📞 কল শুরু হয়েছে।`, event.threadID);
         else if (log.call_status === "ended" || log.event === "group_call_ended") api.sendMessage(`📞 কল শেষ হয়েছে।`, event.threadID);
     }
 
-    // ৪. এন্টি গ্রুপ ইনফো (নাম রিসেট)
+    // ৪. এন্টি গ্রুপ ইনফো (ফেসবুকের ওরিজিনাল ওল্ড নেম লজিক - ১০০% ফিক্সড)
     if (event.logMessageType === "log:thread-name") {
-        if (settings.anti === false) return; // সেটিংস অফ থাকলে কাজ করবে না
+        if (settings.anti === false) return;
 
         const actor = (await api.getUserInfo(event.author))[event.author]?.name || "কেউ";
-        const oldName = threadData.name || "SAEEM GROUP";
-        api.setTitle(oldName, event.threadID);
-        api.sendMessage(`⚠️ ${actor} গ্রুপের নাম পরিবর্তন করে "${event.logMessageData.name}" করেছিলেন, আমি তা আবার "${oldName}" করে দিয়েছি!`, event.threadID);
+        
+        // [ULTIMATE FIX] ফেসবুক ইভেন্ট থেকে সরাসরি আসল পুরানো নাম তুলে আনা হচ্ছে
+        let oldName = event.logMessageData.oldName || event.logMessageData.old_name;
+        
+        // যদি ইভেন্টে পুরানো নাম না পাওয়া যায়, তবেই কেবল ডিফল্ট এই ফ্যান্সি নাম নিবে
+        if (!oldName) oldName = "🌺সঁকাঁল্ঁ সঁন্ধ্যা্ঁ আঁড্ডা্ঁ বঁক্স্ঁ 彡";
+
+        // লুপ প্রোটেকশন
+        if (event.logMessageData.name === oldName) return;
+
+        // গ্রুপ নাম অরিজিনাল পুরানো নামে রিসেট করা হচ্ছে
+        api.setTitle(oldName, event.threadID, (err) => {
+            if (!err) {
+                api.sendMessage(`⚠️ ${actor} গ্রুপের নাম পরিবর্তন করে "${event.logMessageData.name}" করেছিলেন, আমি তা আবার "${oldName}" করে দিয়েছি!`, event.threadID);
+            }
+        });
     }
 
     // ৫. অ্যাডমিন চেঞ্জ
     if (event.logMessageType === "log:thread-admins") {
-        if (settings.anti === false) return; // সেটিংস অফ থাকলে কাজ করবে না
+        if (settings.anti === false) return;
 
         console.log("[ADMIN-EVENT] ====== DEBUG START ======");
         const actor = (await api.getUserInfo(event.author))[event.author]?.name || "কেউ";
