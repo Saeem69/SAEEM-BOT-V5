@@ -9,7 +9,7 @@ function box(title, content) {
     return `╭━❮ ${title} ❯━╮\n` +
            `${formattedContent}\n` +
            `├━─━─━━──━─━─━\n` +
-           `├‣ SAEEM-BOT-V5\n` +
+           `├‣ BADOL-BOT-V5\n` +
            `╰━──━─━─━━─━─━❍`;
 }
 
@@ -117,4 +117,4 @@ module.exports = {
                 }
                 case "loadall": {
                     global.loadCommands();
-                    api.setMessageReaction("✅", messageID,
+                    api.setMessageReaction("✅", messageID, 
