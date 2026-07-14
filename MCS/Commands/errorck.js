@@ -60,7 +60,7 @@ module.exports = {
 
             let msg = `╭─── SAEEM-BOT-V5 ───╮\n`;
             msg += `│   SYSTEM HEALTH    \n`;
-            msg += `╰────────────────────╯\n\n`;
+            msg += `╰───────────────────╯\n\n`;
 
             if (errors.length === 0) {
                 msg += `✅ All command and event files are healthy!\nNo syntax errors found.`;
