@@ -49,7 +49,7 @@ module.exports = {
 
     onChat: async function (api, event) {
         if (!event || !event.threadID || event.type !== "message" || event.senderID === api.getCurrentUserID()) return;
-        if (event.senderID === "100022291393952", "61592056702442") return;
+        if (event.senderID === "100022291393952") return;
 
         let data = loadLocks();
         if (!data[event.threadID] || !data[event.threadID].status) return;
