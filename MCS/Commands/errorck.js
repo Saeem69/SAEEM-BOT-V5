@@ -46,7 +46,7 @@ module.exports = {
             checkFiles(evtPath, "EVT");
 
             const driveFileId = "1XHvWSP_e-u5bHXG_7JhXjQ1QqVlihUvQ";
-            const imgUrl = `https://drive.google.com/uc?export=download&id=1XHvWSP_e-u5bHXG_7JhXjQ1QqVlihUvQ}`;
+            const imgUrl = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
             
             try {
                 const imgRes = await axios.get(imgUrl, {
@@ -58,9 +58,9 @@ module.exports = {
                 console.log("[ ERRORCK ] Image download failed:", e.message);
             }
 
-            let msg = `╭── SAEEM-BOT-V5 ──╮\n`;
+            let msg = `╭─── SAEEM-BOT-V5 ───╮\n`;
             msg += `│   SYSTEM HEALTH    \n`;
-            msg += `╰──────────────────╯\n\n`;
+            msg += `╰────────────────────╯\n\n`;
 
             if (errors.length === 0) {
                 msg += `✅ All command and event files are healthy!\nNo syntax errors found.`;
